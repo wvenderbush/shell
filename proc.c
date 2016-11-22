@@ -8,12 +8,15 @@
 int run(){
 
 	//### START COMMAND RUNNER ###
+	char cwd[256];
+	getcwd(cwd, sizeof(cwd));
+	printf("%s", cwd);
+	printf("--> ");
 
 	char *input = malloc(256);
 	char line[100];
 	char *s;
 
-	printf("--> ");
 	fgets(line, sizeof(line), stdin);
 	*(strchr(line, '\n')) = NULL;
 

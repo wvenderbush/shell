@@ -7,8 +7,9 @@
 
 int main(){
 	//execvp("clear", args);
-
+	printf("\033[2J");
 	printf("Welcome to SeaShell\n");
+
 
 	while (1){
 		run();
