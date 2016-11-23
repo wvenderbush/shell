@@ -6,15 +6,15 @@
 #include "func.h"
 
 int main(){
-	//execvp("clear", args);
-	printf("\033[2J");
-	printf("Welcome to SeaShell\n");
-	printf("-------------------\n\n");
+  //execvp("clear", args);
+  printf("\033[2J");
+  printf("Welcome to SeaShell\n");
+  printf("-------------------\n\n");
 
 
-	while (1){
-		run();
-	}
-	return 0;
+  while (1){
+    run();
+  }
+  return 0;
 	
 }

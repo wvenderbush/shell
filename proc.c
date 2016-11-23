@@ -7,52 +7,56 @@
 
 int run(){
 
-	//### START COMMAND RUNNER ###
-	char cwd[256];
-	getcwd(cwd, sizeof(cwd));
-	printf("%s", cwd);
-	printf("--> ");
+  //### START COMMAND RUNNER ###
 
-	char *input = malloc(256);
-	char line[100];
-	char *s;
+  prompt();
+  char *input = malloc(256);
+  char line[100];
+  fgets(line, sizeof(line), stdin);
+  *(strchr(line, '\n')) = NULL;
+  input = line;
+  char *args[10];
 
-	fgets(line, sizeof(line), stdin);
-	*(strchr(line, '\n')) = NULL;
+  int i = 0;
+  while (input != 0) {
+    args[i] = strsep(&input, " ");
+    i++;
+  }
+  args[i] = NULL;
+   
+  
+  //### END COMMAND RUNNER ###
 
-	input = line;
-	char *args[10];
+  int pid = fork();
 
-	int i = 0;
-	while (input != 0) {
-		args[i] = strsep(&input, " ");
-		i++;
-	}
-	args[i] = NULL;
+  if (pid == -1) {
+    char* error = strerror(errno);
+    printf("Fork Error: %s\n", error);
+    return 1;
+  }
 
-	//### END COMMAND RUNNER ###
+  else if (pid == 0) {
+    execvp(args[0], args);  
 
-	int pid = fork();
+    char* error = strerror(errno);
+    printf("Shell Error on %s: %s\n", args[0], error);
+    return 0;
+  }
 
-	if (pid == -1) {
-		char* error = strerror(errno);
-		printf("Fork Error: %s\n", error);
-		return 1;
-	}
+  else {
+    int cstat;
+    waitpid(pid, &cstat, 0);
+    return 1;
+  }
 
-	else if (pid == 0) {
-		execvp(args[0], args);  
-
-		char* error = strerror(errno);
-		printf("Shell Error on %s: %s\n", args[0], error);
-		return 0;
-	}
-
-	else {
-		int cstat;
-		waitpid(pid, &cstat, 0);
-		return 1;
-	}
-
-	return 1;
+  return 1;
 }
+
+
+void prompt() {
+  char cwd[256];
+  getcwd(cwd, sizeof(cwd));
+  printf("%s", cwd);
+  printf("$ ");
+}
+
