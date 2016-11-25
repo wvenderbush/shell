@@ -12,7 +12,10 @@ int run(){
   prompt();
   char *input = malloc(256);
   char line[100];
-  fgets(line, sizeof(line), stdin);
+  if (fgets(line, sizeof(line), stdin) == NULL) {
+    printf("\n");
+    return 0;
+  }
   *(strchr(line, '\n')) = NULL;
   input = line;
 

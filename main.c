@@ -10,7 +10,6 @@ int main(){
   printf("\033[2J");
   printf("Welcome to SeaShell\n");
   printf("-------------------\n\n");
-
   int i = run();
   while (i){
     i = run();
