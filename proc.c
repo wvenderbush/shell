@@ -34,7 +34,11 @@ int run(){
     exit(0);
   }
 
-
+  if ( !(strcmp(args[0], "cd" )) ) {
+    printf("Changing directory...\n");
+    chdir(args[1]);
+  }
+  
   int pid = fork();
 
   if (pid == -1) {
