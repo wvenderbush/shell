@@ -15,17 +15,22 @@ int run(){
   fgets(line, sizeof(line), stdin);
   *(strchr(line, '\n')) = NULL;
   input = line;
-  char *args[10];
 
+  char *args[10];
   int i = 0;
-  while (input != 0) {
+  while( input!=0 ) {
     args[i] = strsep(&input, " ");
     i++;
   }
   args[i] = NULL;
-   
-  
+
   //### END COMMAND RUNNER ###
+
+  if ( !(strcmp(args[0], "exit")) ) {
+    printf("Exiting SeaShell...\n");
+    exit(0);
+  }
+
 
   int pid = fork();
 
@@ -36,6 +41,7 @@ int run(){
   }
 
   else if (pid == 0) {
+    
     execvp(args[0], args);  
 
     char* error = strerror(errno);
@@ -59,4 +65,6 @@ void prompt() {
   printf("%s", cwd);
   printf("$ ");
 }
+
+	
 

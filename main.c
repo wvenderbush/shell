@@ -11,9 +11,9 @@ int main(){
   printf("Welcome to SeaShell\n");
   printf("-------------------\n\n");
 
-
-  while (1){
-    run();
+  int i = run();
+  while (i){
+    i = run();
   }
   return 0;
 	
