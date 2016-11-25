@@ -38,7 +38,7 @@ int run(){
     printf("Changing directory...\n");
     chdir(args[1]);
   }
-  
+
   int pid = fork();
 
   if (pid == -1) {
