@@ -13,7 +13,7 @@ int run(){
   char *input = malloc(256);
   char line[100];
   if (fgets(line, sizeof(line), stdin) == NULL) {
-    printf("\n");
+    printf("\nExiting Seashell...\n");
     return 0;
   }
   *(strchr(line, '\n')) = NULL;
