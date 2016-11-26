@@ -62,6 +62,8 @@ int run(){
     return 1;
   }
 
+  free(args);
+
   return 1;
 }
 
