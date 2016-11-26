@@ -6,8 +6,7 @@
 #include "func.h"
 
 int main(){
-  //execvp("clear", args);
-  printf("\033[2J");
+  system("clear");
   printf("Welcome to SeaShell\n");
   printf("-------------------\n\n");
   int i = run();
